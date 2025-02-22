@@ -12,6 +12,8 @@ jobs:
         os: [macos, ubuntu, windows]
 
     steps:
+    - if: matrix.os == 'windows'
+      run: git config --global core.autocrlf false
     - uses: actions/checkout@v4
     - uses: mlugg/setup-zig@v1
       with:
