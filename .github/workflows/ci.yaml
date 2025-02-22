@@ -25,7 +25,7 @@ jobs:
     - run: zig fmt --check src 
     - run: zig build test
     - run: zig build plugin
-    - if:  github.ref == 'refs/heads/main'
+    - if:  github.ref == 'refs/heads/main' && matrix.os == 'windows'
       uses: actions/upload-artifact@v4
       with:
         name: nsYaml
