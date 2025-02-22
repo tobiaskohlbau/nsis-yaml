@@ -25,7 +25,7 @@ Exemption for following files which are distrbuted under their original license 
 - include/api.h
 - include/nsis_tchar.h
 - include/pluginapi.h
-- include/pluginapi.c
+- src/pluginapi.c
 
 COPYRIGHT
 ---------
