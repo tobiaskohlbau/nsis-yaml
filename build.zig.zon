@@ -1,0 +1,17 @@
+.{
+    .name = "yaml",
+    .version = "0.0.0",
+
+    .dependencies = .{
+        .yaml = .{
+            .url = "https://github.com/tobiaskohlbau/zig-yaml/archive/c57d0be8d8c241da196bd119889599938ab65c62.tar.gz",
+            .hash = "12205972b918e5ecc2c0845df9570d336e87d7834ed8f51e7420c02275d0fec9e40b",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "include",
+    },
+}
