@@ -24,7 +24,7 @@ jobs:
         version: master
     - run: zig fmt --check src 
     - run: zig build test
-    - run: zig build plugin
+    - run: zig build plugin -Doptimize=ReleaseSmall
     - if:  github.ref == 'refs/heads/main' && matrix.os == 'windows'
       uses: actions/upload-artifact@v4
       with:

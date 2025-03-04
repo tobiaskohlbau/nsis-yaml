@@ -1,7 +1,7 @@
 const std = @import("std");
 const expect = std.testing.expect;
 const expectEqual = std.testing.expectEqual;
-const yaml = @import("yaml");
+const yaml = @import("yaml").Yaml;
 
 export fn cWriteYaml(location: [*:0]const c_char, path: [*:0]const c_char, value: [*:0]const c_char) i32 {
     var buffer: [100000]u8 = undefined;
@@ -87,9 +87,9 @@ const Node = union(enum) {
     fn toYaml(self: *Self, allocator: std.mem.Allocator) !yaml.Value {
         switch (self.*) {
             .map => |m| {
-                var map = std.StringArrayHashMap(yaml.Value).init(allocator);
+                var map = std.StringArrayHashMapUnmanaged(yaml.Value){};
                 for (m.keys()) |key| {
-                    try map.put(key, try m.getPtr(key).?.toYaml(allocator));
+                    try map.put(allocator, key, try m.getPtr(key).?.toYaml(allocator));
                 }
                 return .{ .map = map };
             },
@@ -117,8 +117,8 @@ pub fn writeYaml(allocator: std.mem.Allocator, location: []const u8, path: []con
     const buffer_size = 2000;
     const file_buffer = try file.readToEndAlloc(arena.allocator(), buffer_size);
 
-    var untyped = try yaml.Yaml.load(arena.allocator(), file_buffer);
-    defer untyped.deinit();
+    var untyped = try yaml.load(arena.allocator(), file_buffer);
+    defer untyped.deinit(arena.allocator());
 
     var root = try Node.fromYaml(arena.allocator(), if (untyped.docs.items.len >= 1) untyped.docs.items[0] else yaml.Value.empty);
 

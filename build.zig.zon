@@ -1,11 +1,10 @@
 .{
-    .name = "yaml",
+    .name = .yaml,
     .version = "0.0.0",
-
     .dependencies = .{
         .yaml = .{
-            .url = "https://github.com/tobiaskohlbau/zig-yaml/archive/c57d0be8d8c241da196bd119889599938ab65c62.tar.gz",
-            .hash = "12205972b918e5ecc2c0845df9570d336e87d7834ed8f51e7420c02275d0fec9e40b",
+            .url = "https://github.com/kubkon/zig-yaml/archive/27f63d3d2d13ed228d8fc077635205e6c2a405c7.tar.gz",
+            .hash = "1220ecc81d84667abe569f90b99f71266db2d1d102457186dd468f0db2a7e05cd724",
         },
     },
     .paths = .{
@@ -14,4 +13,5 @@
         "src",
         "include",
     },
+    .fingerprint = 0xea31a984920748f8,
 }
